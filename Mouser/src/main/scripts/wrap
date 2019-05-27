@@ -1,2 +1,2 @@
 #!/bin/sh
-cat stub.sh ../target/${filename}-jar-with-dependencies.jar > mouser.run && chmod +x mouser.run 
+cat stub.sh ../../../target/$fileName-jar-with-dependencies.jar > ../../../output/mouser.run && chmod +x ../../../output/mouser.run 
