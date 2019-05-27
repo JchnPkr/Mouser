@@ -17,7 +17,8 @@ public class Main {
 			
 			javax.swing.SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
-				    AppFrame app = new AppFrame(mover);
+				    @SuppressWarnings("unused")
+					AppFrame app = new AppFrame(mover);
 				}
 			});
 		} 

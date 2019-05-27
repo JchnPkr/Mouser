@@ -35,6 +35,13 @@ public class AppFrame extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		logger.debug("toggle the dance");
 		
+		if(mover.isDance()) {
+			toggleBtn.setText("let's dance again");
+		}
+		else {
+			toggleBtn.setText("stop dancing");
+		}
+		
 		mover.setDance(!mover.isDance());
 	}
 }
