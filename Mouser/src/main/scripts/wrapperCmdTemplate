@@ -1,2 +1,3 @@
 #!/bin/sh
+#TODO paths not working this way in script mode
 cat stub.sh ../../../target/$fileName-jar-with-dependencies.jar > ../../../output/mouser.run && chmod +x ../../../output/mouser.run 
