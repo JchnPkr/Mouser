@@ -1,9 +1,10 @@
 package main;
 
 import java.awt.AWTException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import gui.AppFrame;
 
 
 public class Main {
@@ -12,18 +13,17 @@ public class Main {
 	public static void main(String[] args) {
 		logger.debug("Start main");
 		
-		try {
-			MouseMover mover = new MouseMover(10);
-			
-			javax.swing.SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
-				    @SuppressWarnings("unused")
-					AppFrame app = new AppFrame(mover);
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				AppFrame app;
+				try {
+					app = new AppFrame();
+					app.setVisible(true);
+				} 
+				catch (AWTException e) {
+					logger.error(e.getMessage());
 				}
-			});
-		} 
-		catch (AWTException e ) {
-			logger.error(e.getMessage());
-		} 
+			}
+		}); 
 	}
 }
