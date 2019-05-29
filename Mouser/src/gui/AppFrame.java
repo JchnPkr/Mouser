@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.AWTException;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collections;
@@ -10,6 +11,10 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +32,8 @@ public class AppFrame extends JFrame {
 	private MouseMover mover;
 	
 	private JPanel panel;
+	private JSlider speedSlider;
+	private JSpinner stepSizeSpinner;
 	private JButton toggleBtn;
 	private JComboBox<DancePattern> combo;
 
@@ -36,17 +43,27 @@ public class AppFrame extends JFrame {
 		ShortcutManager.setup(this);
 		
 		this.setTitle("Mouser dance party");
-		this.setSize(280,70);
+		this.setSize(280, 120);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		this.panel = new JPanel();
+		panel = new JPanel(new BorderLayout());
 		this.add(panel); 
 		 
 		initToggleBtn();
-		this.panel.add(toggleBtn);
+		panel.add(toggleBtn, BorderLayout.PAGE_START);
+		
+		speedSlider = new JSlider(JSlider.HORIZONTAL, 150, 150000, 1000);
+		speedSlider.setMajorTickSpacing(30000);
+		speedSlider.setMinorTickSpacing(6000);
+		speedSlider.setPaintTicks(true);
+		panel.add(speedSlider, BorderLayout.LINE_START);
+		
+		SpinnerNumberModel stepSizeSpinnerModel = new SpinnerNumberModel(10, 1, 100, 1);
+		stepSizeSpinner = new JSpinner(stepSizeSpinnerModel);
+		panel.add(stepSizeSpinner, BorderLayout.LINE_END);
 
 		initComboBox();
-		this.panel.add(combo);
+		panel.add(combo, BorderLayout.PAGE_END);
 		
 		mover = new MouseMover(10,  1000, getComboboxItem());
 	}
