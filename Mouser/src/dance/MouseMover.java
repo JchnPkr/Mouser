@@ -83,4 +83,12 @@ public class MouseMover implements ActionListener {
 			logger.error(e1.getMessage());
 		}
 	}
+
+	public void setStepSize(int pix) {
+		stepsize = pix;
+	}
+
+	public void setSpeed(int ms) {
+		timer.setDelay(ms);
+	}
 }
